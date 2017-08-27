@@ -1,35 +1,41 @@
-This is the starter template for the final assessment project for Udacity's React Fundamentals course, developed by [React Training](https://reacttraining.com). The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+#My Reads
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+This is a project to keep track of your reads!
 
-## What You're Getting
+This is taken from the starter template for the final assessment project for Udacity's React Fundamentals course, developed by [React Training](https://reacttraining.com).
+
+## Installation and Launch
+
+Here we'll assume that you know what `node`, `npm`, `javascript`, `html`, `react` means, and how to execute commands in a terminal in your OS. 
+
+The versions of node and yarn used in this project are: 
+
 ```
-+--public/    
- |-- index.html - DO NOT MODIFY
- |-- favicon.ico - React Icon, You may change if you wish.
-+-- src/
- +-- icons/ - Helpful images for your app. Use at your discretion.
-  |-- add.svg
-  |-- arrow-back.svg
-  |-- arrow-drop-down.svg
- |-- App.js - This is the root of your app. Contains static HTML right now.
- |-- App.css - Styles for your app. Feel free to customize this as you desire.
- |-- App.test.js - Used for testing. Provided with Create React App. 
- Testing is encouraged, but not required.
- |-- BooksAPI.js - A JavaScript API for the provided Udacity backend. 
- Instructions for the methods are below.
- |-- index.js - You should not need to modify this file. It is used for DOM rendering only.
- |-- index.css - Global styles. You probably won't need to change anything here.
-|-- .gitignore 
-|-- CONTRIBUTING.MD - Information about contributing to this repo. 
-TL;DR - Fork and clone your own version of this to use it.
-|-- README.MD - This README file.
-|-- SEARCH_TERMS.md - The whitelisted short collection of available search terms 
-for you to use with your app.
-|-- package.json - npm package manager file. It's unlikely that you'll need to modify this.
+$ node --version
+v6.11.2
+  
+$ yarn --version
+0.27.5
 ```
+If you are not using [nvm](https://github.com/creationix/nvm), I'll recommend it, since it lets you use different versions of `node` adn `npm` in the same machine.
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+First you'll need a copy of the project, so go on and download it from [here](https://github.com/facebookincubator/create-react-app/archive/master.zip) and extract it. Or if you have `git` you can always make the `git clone` trick, like this:
+
+`git clone https://github.com/imthejungler/my-reads.git`
+
+After that just go into the folder:
+
+`$ cd my-reads`
+
+And then execute:
+
+`$ npm install && npm start` 
+
+or, if you have [yarn](https://yarnpkg.com/en/) installed, go ahead and run:
+
+`$ yarn && yarn start`
+
+By default it runs over the port `3000` and it will launch a browser with `localhost:3000`. If you have that port occupied, the command will ask you if you want to run it in another port. If after all that the browser does not open right away and does not show any error, just click here if the port didn't change: [http://localhost:3000](http://localhost:3000) 
 
 ## Backend Server
 
@@ -59,6 +65,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+This repo is for educational purpose only, so contributions are kind of closed. But if you want to extend it or fork it be my guest! 
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
