@@ -5,17 +5,29 @@ import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
 import SearchBooks from './SearchBooks'
 
+/**
+ * @description An app made to keep track of the books you are interested in, those you already read and
+ * the ones you are currently reading.
+ */
 class BooksApp extends Component {
   state = {
     books: []
   };
 
+  /**
+   * @description gets all the books in the shelves.
+   */
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books: books})
     })
   }
-  render() {
+
+  /**
+   * @description renders THE APP!, well is just a saying. Because I'll have to list every feature of the app
+   * and I won't. xD
+   * @returns {XML} the rendered HTML of the app.
+   */  render() {
     return (
       <div className="app">
         <Route path="/search" render={() => (
