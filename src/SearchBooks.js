@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+/**
+ * @description This component allows the user to search, see and move the books to a shelf.
+ */
 class SearchBooks extends Component {
 
+  /**
+   * @description renders the a Search for books UI and the list of results.
+   * @returns {XML} the rendered HTML of a search engine for books.
+   */
   render() {
     return (
       <div className="search-books">
@@ -29,4 +36,4 @@ class SearchBooks extends Component {
   }
 }
 
-export default SearchBooks
+export default SearchBooks;

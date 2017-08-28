@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 
+/**
+ * @description Sends a signal to change the book from shelf
+ */
 class ChangeBookshelf extends Component {
 
+  /**
+   * @description renders a drop down menu with the shelves available.
+   * @returns {XML} the rendered HTML of a list of shelves.
+   */
   render() {
     return (
       <div className="book-shelf-changer">
@@ -18,4 +25,4 @@ class ChangeBookshelf extends Component {
 
 }
 
-export default ChangeBookshelf
+export default ChangeBookshelf;

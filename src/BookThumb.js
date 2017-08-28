@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+/**
+ * @description Shows a thumbnail or summary of a book, just the most basic data.
+ */
 class BookThumb extends Component {
 
   static propTypes = {
     book: PropTypes.object.isRequired
   };
 
+  /**
+   * @description renders the BookThumb UI.
+   * @returns {XML} the rendered HTML of a Book thumbnail.
+   */
   render() {
 
     const { book } = this.props;
@@ -28,4 +35,4 @@ class BookThumb extends Component {
 
 }
 
-export default BookThumb
+export default BookThumb;

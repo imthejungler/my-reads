@@ -2,12 +2,19 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Bookshelf from './Bookshelf'
 
+/**
+ * @description List the shelves and the books in them.
+ */
 class ListBooks extends Component {
 
   static propTypes = {
     books: PropTypes.array.isRequired
   };
 
+  /**
+   * @description renders the List of Bookshelves and books on it UI.
+   * @returns {XML} the rendered HTML of Bookshelves and its books.
+   */
   render() {
     const { books } = this.props;
 
@@ -40,4 +47,4 @@ class ListBooks extends Component {
   }
 }
 
-export default ListBooks
+export default ListBooks;
