@@ -8,13 +8,8 @@ import Bookshelf from './Bookshelf'
 class ListBooks extends Component {
 
   static propTypes = {
-    books: PropTypes.array.isRequired
-  };
-
-  handleBookshelfChange = (book, bookshelf) => {
-    if (this.props.onBookshelfChange) {
-      this.props.onBookshelfChange(book, bookshelf);
-    }
+    books: PropTypes.array.isRequired,
+    onBookshelfChange: PropTypes.func
   };
 
   /**
@@ -22,18 +17,31 @@ class ListBooks extends Component {
    * @returns {XML} the rendered HTML of Bookshelves and its books.
    */
   render() {
-    const { books } = this.props;
+    const { books, onBookshelfChange } = this.props;
 
-    let bookshelves = {
-      currentlyReading: [],
-      wantToRead: [],
-      read: []
-    };
+    const shelves = [
+      {
+        label: 'Currently Reading',
+        key: 'currentlyReading',
+        books: []
+      },
+      {
+        label: 'Want to Read',
+        key: 'wantToRead',
+        books: []
+      },
+      {
+        label: 'Read',
+        key: 'read',
+        books: []
+      }
+    ];
 
-    books.forEach(book => {
-      book.shelf === 'currentlyReading' && bookshelves.currentlyReading.push(book);
-      book.shelf === 'wantToRead' && bookshelves.wantToRead.push(book);
-      book.shelf === 'read' && bookshelves.read.push(book);
+    const availvableShelves = shelves.map(shelf => shelf.key);
+
+    shelves.map(shelf => {
+      shelf.books = books.filter(book => book.shelf === shelf.key);
+      return shelf;
     });
 
     return (
@@ -43,18 +51,13 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <Bookshelf title="Currently Reading"
-                       books={bookshelves.currentlyReading}
-                       onBookshelfChange={this.handleBookshelfChange}
-            />
-            <Bookshelf title="Want To Read"
-                       books={bookshelves.wantToRead}
-                       onBookshelfChange={this.handleBookshelfChange}
-            />
-            <Bookshelf title="Read"
-                       books={bookshelves.read}
-                       onBookshelfChange={this.handleBookshelfChange}
-            />
+            {shelves.map(shelf => (
+              <Bookshelf key={shelf.key}
+                         title={shelf.label}
+                         books={shelf.books}
+                         onBookshelfChange={onBookshelfChange}
+              />
+            ))}
           </div>
         </div>
       </div>

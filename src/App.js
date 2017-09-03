@@ -19,7 +19,7 @@ class BooksApp extends Component {
    */
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books: books})
+      this.setState({books})
     })
   }
 
@@ -32,7 +32,7 @@ class BooksApp extends Component {
     BooksAPI.update(book, shelf).then(() => {
       book.shelf = shelf;
       this.setState((state) => ({
-        books: state.books.filter(currentBook => currentBook.id !== book.id).concat(book)
+        books: state.books.map(b => b.id === book.id ? book : b)
       }))
     });
   };

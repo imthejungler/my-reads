@@ -35,7 +35,7 @@ class BookThumb extends Component {
           }}> </div>
           {onBookshelfChange && (
             <ChangeBookshelf
-              currentShelf={book.current}
+              currentShelf={book.shelf}
               onBookshelfChange={this.handleBookshelfChange}
             />
           )}
