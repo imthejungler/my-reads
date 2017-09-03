@@ -24,10 +24,25 @@ class BooksApp extends Component {
   }
 
   /**
+   * @description moves a book to a shelf
+   * @param book the book to be moved
+   * @param shelf the destination shelf
+   */
+  changeBookshelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(() => {
+      book.shelf = shelf;
+      this.setState((state) => ({
+        books: state.books.filter(currentBook => currentBook.id !== book.id).concat(book)
+      }))
+    });
+  };
+
+  /**
    * @description renders THE APP!, well is just a saying. Because I'll have to list every feature of the app
    * and I won't. xD
    * @returns {XML} the rendered HTML of the app.
-   */  render() {
+   */
+  render() {
     return (
       <div className="app">
         <Route path="/search" render={() => (
@@ -36,6 +51,7 @@ class BooksApp extends Component {
         <Route exact path="/" render={() => (
           <ListBooks
             books={this.state.books}
+            onBookshelfChange={this.changeBookshelf}
           />
         )}/>
       </div>

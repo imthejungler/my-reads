@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import ChangeBookshelf from './ChangeBookShelf';
 
 /**
  * @description Shows a thumbnail or summary of a book, just the most basic data.
@@ -7,7 +8,15 @@ import PropTypes from 'prop-types'
 class BookThumb extends Component {
 
   static propTypes = {
-    book: PropTypes.object.isRequired
+    book: PropTypes.object.isRequired,
+    onBookshelfChange: PropTypes.func
+  };
+
+  handleBookshelfChange = (newBookshelf) => {
+
+    if(this.props.onBookshelfChange) {
+      this.props.onBookshelfChange(this.props.book, newBookshelf)
+    }
   };
 
   /**
@@ -16,7 +25,7 @@ class BookThumb extends Component {
    */
   render() {
 
-    const { book } = this.props;
+    const { book, onBookshelfChange } = this.props;
 
     return (
       <div className="book">
@@ -24,10 +33,16 @@ class BookThumb extends Component {
           <div className="book-cover" style={{
             backgroundImage: 'url(' + book.imageLinks.smallThumbnail + ')'
           }}> </div>
+          {onBookshelfChange && (
+            <ChangeBookshelf
+              currentShelf={book.current}
+              onBookshelfChange={this.handleBookshelfChange}
+            />
+          )}
         </div>
         <div className="book-title">{book.title}</div>
         {book.authors.map(author => (
-          <div className="book-authors">{author}</div>
+          <div key={book.id + author} className="book-authors">{author}</div>
         ))}
       </div>
     );

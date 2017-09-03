@@ -1,9 +1,20 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 /**
  * @description Sends a signal to change the book from shelf
  */
 class ChangeBookshelf extends Component {
+
+  static propTypes = {
+    onBookshelfChange: PropTypes.func.isRequired
+  };
+
+  handleChange = (e) => {
+    if(this.props.onBookshelfChange) {
+      this.props.onBookshelfChange(e.target.value);
+    }
+  };
 
   /**
    * @description renders a drop down menu with the shelves available.
@@ -12,7 +23,7 @@ class ChangeBookshelf extends Component {
   render() {
     return (
       <div className="book-shelf-changer">
-        <select>
+        <select onChange={this.handleChange}>
           <option value="none" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import Bookshelf from './Bookshelf'
 
 /**
@@ -9,6 +9,12 @@ class ListBooks extends Component {
 
   static propTypes = {
     books: PropTypes.array.isRequired
+  };
+
+  handleBookshelfChange = (book, bookshelf) => {
+    if (this.props.onBookshelfChange) {
+      this.props.onBookshelfChange(book, bookshelf);
+    }
   };
 
   /**
@@ -37,9 +43,18 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <Bookshelf title="Currently Reading" books={bookshelves.currentlyReading}/>
-            <Bookshelf title="Want To Read" books={bookshelves.wantToRead}/>
-            <Bookshelf title="Read" books={bookshelves.read}/>
+            <Bookshelf title="Currently Reading"
+                       books={bookshelves.currentlyReading}
+                       onBookshelfChange={this.handleBookshelfChange}
+            />
+            <Bookshelf title="Want To Read"
+                       books={bookshelves.wantToRead}
+                       onBookshelfChange={this.handleBookshelfChange}
+            />
+            <Bookshelf title="Read"
+                       books={bookshelves.read}
+                       onBookshelfChange={this.handleBookshelfChange}
+            />
           </div>
         </div>
       </div>

@@ -10,7 +10,14 @@ class Bookshelf extends Component {
 
   static propTypes = {
     title: PropTypes.string.isRequired,
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    onBookshelfChange: PropTypes.func
+  };
+
+  handleBookshelfChange = (book, bookshelf) => {
+    if (this.props.onBookshelfChange) {
+      this.props.onBookshelfChange(book, bookshelf);
+    }
   };
 
   /**
@@ -29,10 +36,11 @@ class Bookshelf extends Component {
           <ol className="books-grid">
             {
               books.map(book => (
-              <li>
-                <BookThumb book={book}/>
-              </li>
-            ))}
+                <li key={book.id}>
+                  <BookThumb book={book} onBookshelfChange={this.handleBookshelfChange}/>
+                </li>
+              ))
+            }
           </ol>
         </div>
       </div>
