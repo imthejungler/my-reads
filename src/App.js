@@ -10,6 +10,7 @@ import SearchBooks from './SearchBooks'
  * the ones you are currently reading.
  */
 class BooksApp extends Component {
+
   state = {
     books: []
   };
@@ -29,10 +30,9 @@ class BooksApp extends Component {
    * @param shelf the destination shelf
    */
   changeBookshelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(() => {
-      book.shelf = shelf;
+    BooksAPI.update(book, shelf).then((updatedBook) => {
       this.setState((state) => ({
-        books: state.books.map(b => b.id === book.id ? book : b)
+        books: state.books.filter(b => b.id !== updatedBook.id).concat(updatedBook)
       }))
     });
   };
@@ -46,7 +46,8 @@ class BooksApp extends Component {
     return (
       <div className="app">
         <Route path="/search" render={() => (
-          <SearchBooks/>
+          <SearchBooks
+            onBookshelfChange={this.changeBookshelf}/>
         )}/>
         <Route exact path="/" render={() => (
           <ListBooks

@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import Bookshelf from './Bookshelf'
 
 /**
@@ -37,8 +38,6 @@ class ListBooks extends Component {
       }
     ];
 
-    const availvableShelves = shelves.map(shelf => shelf.key);
-
     shelves.map(shelf => {
       shelf.books = books.filter(book => book.shelf === shelf.key);
       return shelf;
@@ -59,6 +58,9 @@ class ListBooks extends Component {
               />
             ))}
           </div>
+        </div>
+        <div className="open-search">
+          <Link to="/search">Add a book</Link>
         </div>
       </div>
     )
