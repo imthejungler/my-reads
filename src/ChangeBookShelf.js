@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 class ChangeBookshelf extends Component {
 
   static propTypes = {
-    currentShelf: PropTypes.string.isRequired,
+    currentShelf: PropTypes.string,
     onBookshelfChange: PropTypes.func.isRequired
   };
 
@@ -23,7 +23,8 @@ class ChangeBookshelf extends Component {
    */
   render() {
 
-    const { currentShelf } = this.props;
+    let { currentShelf } = this.props;
+    currentShelf = currentShelf ? currentShelf : 'none';
 
     return (
       <div className="book-shelf-changer">
