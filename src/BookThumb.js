@@ -27,11 +27,12 @@ class BookThumb extends Component {
 
     const { book, onBookshelfChange } = this.props;
 
+    const image = book.imageLinks ? book.imageLinks.smallThumbnail : '';
     return (
       <div className="book">
         <div className="book-top">
           <div className="book-cover" style={{
-            backgroundImage: 'url(' + book.imageLinks.smallThumbnail + ')'
+            backgroundImage: 'url(' + image + ')'
           }}> </div>
           {onBookshelfChange && (
             <ChangeBookshelf

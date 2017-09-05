@@ -20,28 +20,9 @@ class ListBooks extends Component {
   render() {
     const { books, onBookshelfChange } = this.props;
 
-    const shelves = [
-      {
-        label: 'Currently Reading',
-        key: 'currentlyReading',
-        books: []
-      },
-      {
-        label: 'Want to Read',
-        key: 'wantToRead',
-        books: []
-      },
-      {
-        label: 'Read',
-        key: 'read',
-        books: []
-      }
-    ];
-
-    shelves.map(shelf => {
-      shelf.books = books.filter(book => book.shelf === shelf.key);
-      return shelf;
-    });
+    const currentlyReading = books.filter(book => book.shelf === 'currentlyReading');
+    const wantToRead = books.filter(book => book.shelf === 'wantToRead');
+    const read = books.filter(book => book.shelf === 'read');
 
     return (
       <div className="list-books">
@@ -50,13 +31,21 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            {shelves.map(shelf => (
-              <Bookshelf key={shelf.key}
-                         title={shelf.label}
-                         books={shelf.books}
-                         onBookshelfChange={onBookshelfChange}
-              />
-            ))}
+            <Bookshelf key="currentlyReading"
+                       title="Currently Reading"
+                       books={currentlyReading}
+                       onBookshelfChange={onBookshelfChange}
+            />
+            <Bookshelf key="wantToRead"
+                       title="Want To Read"
+                       books={wantToRead}
+                       onBookshelfChange={onBookshelfChange}
+            />
+            <Bookshelf key="read"
+                       title="Read"
+                       books={read}
+                       onBookshelfChange={onBookshelfChange}
+            />
           </div>
         </div>
         <div className="open-search">

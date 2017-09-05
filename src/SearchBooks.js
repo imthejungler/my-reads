@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import * as BooksAPI from './BooksAPI';
 import BookThumb from './BookThumb';
 
 /**
@@ -8,14 +9,26 @@ import BookThumb from './BookThumb';
  */
 class SearchBooks extends Component {
 
+  static propTypes = {
+    onBookshelfChange: PropTypes.func.isRequired,
+    myBooks: PropTypes.array.isRequired,
+  };
+
   state = {
     books: [],
   };
 
   updateQuery(query) {
 
+    const { myBooks } = this.props;
+
     if (query) {
       BooksAPI.search(query.trim(), 20).then((books) => {
+        books = books.map(book => {
+          let myBook = myBooks.find(myBook => book.id === myBook.id);
+          return myBook ? myBook : book;
+        });
+
         this.setState({ books })
       });
     } else {
